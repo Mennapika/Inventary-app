@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebApplication1.Models.Operation>
+@{
+    ViewBag.Title = "OperationList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>OperationList</h2>
+<div class="container">
+    <div class="row">
+        <table id="operations" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> ID</th>
+                    <th>Bill Date</th>
+                    <th>Bill Number</th>
+                    <th>Delivery Receipt Number</th>
+                    <th>Type</th>
+                    <th>Unit</th>
+                    <th>PriceInTons</th>
+                    <th> Quantity</th>
+                    <th>Tax in 14%</th>
+                    <th> Tax in 1%</th>
+                    <th>Due Date </th>
+                    <th> Creditor </th>
+                    <th> Debtor </th>
+                    <th> Subtotal </th>
+                    <th> Notes </th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var operation in Model)
+                {
+                    <tr>
+                        <td>@operation.Id</td>
+                        <td>@operation.BillDate</td>
+                        <td>@operation.BillNumber</td>
+                        <td>@operation.DeliveryReceiptNumber</td>
+                        <td>@operation.Type</td>
+                        <td>@operation.Unit</td>
+                        <td>@operation.PriceInTons</td>
+                        <td>@operation.Quantity</td>
+                        <td>@operation.Tax14</td>
+                        <td>@operation.Tax1</td>
+                        <td>@operation.DueDate</td>
+                        <td>@operation.Creditor</td>
+                        <td>@operation.Debtor</td>
+                        <td>@operation.Subtotal</td>
+                        <td>@operation.Notes</td>
+                        <td>
+                            <a class="btn btn-primary btn-sm" onclick="Edit('@Url.Action("AddOrEdit", "Operation", new { id = operation.Id })')"><i class="fa fa-pencil fa-lg"></i></a>
+                            <a class="btn btn-danger btn-sm" onclick="Delete('@Url.Action("Delete", "Operation", new { id = operation.Id })')"><i class="fa fa-trash fa-lg"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

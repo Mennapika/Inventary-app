@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebApplication1.Models.Supplier>
+@{
+    ViewBag.Title = "SupplierList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SupplierList</h2>
+<div class="container">
+    <div class="row">
+        <table id="admins" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> ID</th>
+                    <th>Name</th>
+                    <th>SNN</th>
+                    <th> Address</th>
+                    <th>TaxCard image</th>
+                    <th>Record image</th>
+                    <th>Action</th>
+     
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var supplier in Model)
+                {
+                <tr>
+                    <td>@supplier.ID</td>
+                    <td>@supplier.Name</td>
+                    <td>@supplier.SNN</td>
+                    <td>@supplier.Address</td>
+                    <td>@supplier.TaxcardImage</td>
+                    <td>@supplier.RecordImage</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" onclick="Edit('@Url.Action("AddOrEdit", "Supplier", new { id = supplier.ID })')"><i class="fa fa-pencil fa-lg"></i></a>
+                        <a class="btn btn-danger btn-sm" onclick="Delete('@Url.Action("Delete", "Supplier", new { id = supplier.ID })')"><i class="fa fa-trash fa-lg"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

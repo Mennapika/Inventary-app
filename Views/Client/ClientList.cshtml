@@ -1,0 +1,43 @@
+﻿@model IEnumerable<WebApplication1.Models.Client>
+@{
+    ViewBag.Title = "ClientList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ClientList</h2>
+<div class="container">
+    <div class="row">
+        <table id="admins" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> ID</th>
+                    <th>Name</th>
+                    <th>SNN</th>
+                    <th> Address</th>
+                    <th>TaxCard image</th>
+                    <th>Record image</th>
+                    <th>Action</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Client in Model)
+                {
+                <tr>
+                    <td>@Client.ID</td>
+                    <td>@Client.Name</td>
+                    <td>@Client.SNN</td>
+                    <td>@Client.Address</td>
+                    <td>@Client.TaxcardImage</td>
+                    <td>@Client.RecordImage</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" onclick="Edit('@Url.Action("AddOrEdit", "Client", new { id = Client.ID })')"><i class="fa fa-pencil fa-lg"></i></a>
+                        <a class="btn btn-danger btn-sm" onclick="Delete('@Url.Action("Delete", "Client", new { id = Client.ID })')"><i class="fa fa-trash fa-lg"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

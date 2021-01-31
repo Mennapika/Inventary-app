@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication1.Models.Admin>
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AdminList</h2>
+<div class="container">
+    <div class="row">
+        <table id="admins" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th> EUSF Admins</th>
+                    <th>E-mail</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Admin in Model)
+                {
+                <tr>
+                    <td>@Admin.Name</td>
+                    <td>@Admin.email</td>
+                    <td>@Admin.Active</td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" onclick="Edit('@Url.Action("AddOrEdit", "Admin", new { id = Admin.ID })')"><i class="fa fa-pencil fa-lg"></i></a>
+                        <a class="btn btn-danger btn-sm" onclick="Delete('@Url.Action("Delete", "Admin", new { id = Admin.ID })')"><i class="fa fa-trash fa-lg"></i></a>
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
